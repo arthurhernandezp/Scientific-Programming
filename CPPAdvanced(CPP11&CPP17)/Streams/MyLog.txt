@@ -1,0 +1,6 @@
+testando e12345a em arquivos
+2234
+2.3
+00001110
+(2,3)
+mostrando como funciona o modo appTestando escrita com -5 posições do fialooo
