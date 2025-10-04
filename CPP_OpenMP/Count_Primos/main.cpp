@@ -1,6 +1,6 @@
 #include <iostream>
 #include <cmath>
-#include <print>
+#include <fmt/format.h>
 #include <chrono>
 #include <omp.h>
 int main()
@@ -32,10 +32,10 @@ int main()
     const std::chrono::steady_clock::duration duration = end - start;
 
     if (duration == std::chrono::steady_clock::duration::zero())
-        std::println("no time elapsed");
+        fmt::println("no time elapsed");
 
-    std::println("{} primos entre 1 e {}",prime,n);
+    fmt::println("{} primos entre 1 e {}",prime,n);
 
-    std::println("Tempo para rodar a tarefa {} milliseconds",std::chrono::duration_cast<std::chrono::milliseconds>(duration).count());
+    fmt::println("Tempo para rodar a tarefa {} milliseconds",std::chrono::duration_cast<std::chrono::milliseconds>(duration).count());
     return 0;
 }

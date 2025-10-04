@@ -1,5 +1,5 @@
 #include <omp.h>
-#include <print>
+#include <fmt/format.h>
 #include <stdio.h>
 int main()
 {
@@ -10,7 +10,7 @@ int main()
     {
         printf("Valor de x: %d, endereco de x:%p\n",x,&x);
         x = omp_get_thread_num();
-        std::println("Sou a thread: {}, imprimindo x = {}",omp_get_thread_num(),x);
+        fmt::println("\nSou a thread: {}, imprimindo x = {}",omp_get_thread_num(),x);
     }
     return 0;
 }

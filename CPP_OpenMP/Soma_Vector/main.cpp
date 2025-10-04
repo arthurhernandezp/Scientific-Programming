@@ -1,6 +1,6 @@
 #include <chrono>
 #include <memory>
-#include <print>
+#include <fmt/format.h>
 #include <omp.h>
 
 void init(std::shared_ptr<int []> &v, size_t s)
@@ -18,7 +18,7 @@ int main()
     const std::chrono::steady_clock::time_point start = std::chrono::steady_clock::now();
     constexpr int NUM_THREADS = 12;
     omp_set_num_threads(NUM_THREADS);
-    std::println("Usando {} threads",NUM_THREADS);
+    fmt::println("Usando {} threads",NUM_THREADS);
     std::shared_ptr<int[]> vec;
     constexpr size_t size = 1'000'000;
     init(vec, size);
@@ -76,8 +76,8 @@ int main()
     const std::chrono::steady_clock::duration duration = end - start;
 
     if (duration == std::chrono::steady_clock::duration::zero())
-        std::println("no time elapsed");
+        fmt::println("no time elapsed");
 
-    std::println("Tempo para rodar a tarefa {} microsegundos, e o valor de acc e: {}",std::chrono::duration_cast<std::chrono::microseconds>(duration).count(),acc);
+    fmt::println("Tempo para rodar a tarefa {} microsegundos, e o valor de acc e: {}",std::chrono::duration_cast<std::chrono::microseconds>(duration).count(),acc);
     return 0;
 }

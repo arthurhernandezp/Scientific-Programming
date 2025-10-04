@@ -1,5 +1,4 @@
 #include <iostream>
-#include <print> // For std::println
 #include <omp.h>
 int main(int argc, char** argv)
 {
@@ -14,9 +13,8 @@ int main(int argc, char** argv)
         #if _OPENMP
             threads_num = omp_get_thread_num();
         #endif
-        std::println("Hello World from thread: {}",threads_num);
+        std::cout << "Hello World from thread: " << threads_num << '\n';
     }
 
     return 0;
 }
-

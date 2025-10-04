@@ -1,0 +1,6 @@
+add_subdirectory(Calcula_PI)
+add_subdirectory(Count_Primos)
+add_subdirectory(Data_Problems)
+add_subdirectory(Hello_World)
+add_subdirectory(Loops)
+add_subdirectory(Soma_Vector)
