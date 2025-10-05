@@ -8,4 +8,4 @@ if(OpenMP_CXX_FOUND)
     target_link_libraries(Calcula_PI PUBLIC OpenMP::OpenMP_CXX)
 endif()
 
-target_link_libraries(Calcula_PI PUBLIC fmt::fmt)
+target_link_libraries(Calcula_PI PUBLIC fmt::fmt Benchmark)

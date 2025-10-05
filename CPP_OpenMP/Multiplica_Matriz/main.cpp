@@ -3,7 +3,7 @@
 #include <mutex>
 #include <chrono>
 #include <random>
-
+#include "Benchmark.hpp"
 // #define N 1500
 
 // double a[N][N];
@@ -30,7 +30,7 @@ int main(int argc, char * argv[])
     const unsigned seed = static_cast<unsigned>(std::chrono::system_clock::now().time_since_epoch().count());
     std::mt19937 generator(seed);
 
-    for (i=0 ;i<N; i++)  
+    for (i=0 ;i<N; i++)
         for (j=0 ;j<N; j++) {
             std::uniform_real_distribution<double> distribution(0, 1);
             c[i][j] = 0;
@@ -39,13 +39,14 @@ int main(int argc, char * argv[])
     }
 
     const std::chrono::steady_clock::time_point start = std::chrono::steady_clock::now();
-
+    Benchmark benchmark;
+    benchmark.init();
     #pragma omp parallel private(i,j,k)
     {
         #ifdef _OPENMP
         {
             #pragma omp single
-            {    
+            {
                 auto num_threads = omp_get_num_threads();
 
                 std::cout << "Numero de threads: " << num_threads << '\n';
@@ -54,14 +55,15 @@ int main(int argc, char * argv[])
         #endif
 
         #pragma omp for
-        for (i=0; i<N; i++) 
+        for (i=0; i<N; i++)
         {
-            for (j=0; j<N; j++) 
-                for (k=0; k<N; k++) 
+            for (j=0; j<N; j++)
+                for (k=0; k<N; k++)
                     c[i][j] = c[i][j] + a[i][k]*b[k][j];
         }
-    } 
-    
+    }
+
+    benchmark.stop();
     const std::chrono::steady_clock::time_point end = std::chrono::steady_clock::now();
     const std::chrono::steady_clock::duration duration = end - start;
 
@@ -78,7 +80,7 @@ int main(int argc, char * argv[])
     std::cout << "Matriz["<< N << "][" << N << "]\n";
     std::cout << "Tempo para rodar a tarefa no modo " << modo_execucao << " " <<std::chrono::duration_cast<std::chrono::microseconds>(duration).count()<<" microseconds\n";
     std::cout << "Tempo para rodar a tarefa no modo " << modo_execucao << " " <<std::chrono::duration_cast<std::chrono::milliseconds>(duration).count()<<" milliseconds\n";
-
+    std::cout << "Usando o benchmark: " << benchmark.getTimeElapsedIn() << '\n';
     delete[] a,b,c;
     return 0;
 }

@@ -12,4 +12,6 @@ FetchContent_Declare(
 )
 FetchContent_MakeAvailable(fmt)
 
+add_subdirectory(common)
 add_subdirectory(CPP_OpenMP)
+add_subdirectory(CPP_CUDA)

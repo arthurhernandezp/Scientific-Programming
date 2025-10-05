@@ -5,13 +5,16 @@
 #include <mutex>
 #include <chrono>
 #include <iostream>
+
+#include "Benchmark.hpp"
+
 int main(int argc, char *argv[])
 {
     int N, id, num_threads, i = 0;
     double PI25DT = 3.141592653589793238462643;
     double mypi, h, sum, x;
 
-    if (argc != 2) 
+    if (argc != 2)
     {
         printf("Usage: a.out N\n");
         exit(0);
@@ -35,7 +38,7 @@ int main(int argc, char *argv[])
             num_threads = 1;
         #endif
 
-        for (i = id*(N/num_threads) + 1; i <= (id+1)*(N/num_threads);i++) 
+        for (i = id*(N/num_threads) + 1; i <= (id+1)*(N/num_threads);i++)
         {
             x = h * ((double)i - 0.5);
             sum += 4.0 / (1.0 + x*x);
