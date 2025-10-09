@@ -1,5 +1,5 @@
-cmake_minimum_required(VERSION 3.31)
-project(Scientific-Programming LANGUAGES CXX)
+cmake_minimum_required(VERSION 3.10)
+project(Scientific-Programming LANGUAGES C CXX)
 
 set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -13,5 +13,6 @@ FetchContent_Declare(
 FetchContent_MakeAvailable(fmt)
 
 add_subdirectory(common)
+add_subdirectory(CPP_MPI)
 add_subdirectory(CPP_OpenMP)
-add_subdirectory(CPP_CUDA)
+# add_subdirectory(CPP_CUDA)
